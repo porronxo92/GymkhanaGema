@@ -15,7 +15,8 @@ const niveles = [
     respuesta: 'EGIPTO',
   },
   {
-    acertijo: '¿Cómo se le llama coloquialmente a un traje de baño de una sola pieza?',
+    acertijo:
+      'En mi interior reposan pequeñas joyas oscuras, listas para despertar tus sentidos con su aroma embriagador. Soy el hogar de las cápsulas de la energía matutina, esperando ser liberadas con un toque de magia. ¿Dónde estoy?',
     respuesta: 'PONCHI',
   },
   {
@@ -44,10 +45,11 @@ function cargarNivel(nivel) {
     console.error('¡El nivel especificado no existe!')
   }
   if (nivelGlobal == niveles.length) {
-    document.getElementById('acertijo').hidden = 'Disfruta de tus regalos. Te quiero mi amor ❤'
+    document.getElementById('acertijo').textContent = 'Disfruta de tus regalos.'
     document.getElementById('answerInput').hidden = true
     document.getElementById('boton-answer').hidden = true
     document.getElementById('title-nivel').textContent = `🎉🎊 HAS GANADO 🎉🎊`
+    document.getElementById('title-acertijo').textContent = `❤ Te quiero mi amor ❤`
   }
 }
 
