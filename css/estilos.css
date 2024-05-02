@@ -1,0 +1,607 @@
+:root {
+  --primaryColor: #f7f7f7;
+  --primaryColorDark: #004e87;
+  --secondaryColor: #63b2e7;
+  --secondcolorDark: #63b2e7;
+  --blanco: #fff;
+  --negro: #000;
+  --fuentePrincipal: "Permanent Marker", cursive;
+  --fuenteSecundaria: "Bruno Ace SC", cursive;
+  --fuenteTexto: "Josefin Sans", sans-serif;
+}
+
+/* CSS con metodologia BEM - Block Element Modifier 
+    -> Bloque - cuando un elemento es significativo y no requiere de otros elementos para definir su estilo o apariencia, suelen ser contenedores. 
+        Nomenclatura: .bloque
+    -> Elemento - son parte de un bloque, y no son significativos. 
+        Nomenclatura: .bloque__elemento
+    -> Modificador - cuando algun bloque o elemento tiene un diseño diferente y requiere de una modificacion con respecto al original. 
+        Nomenclatura: .bloque--modificacion o .bloque__elemento--modificacion
+*/
+
+/* Necesarios proyecto */
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+  scroll-snap-type: y mandatory;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* Globales */
+
+body {
+  font-size: 1.6rem;
+  /* 1rem = 10px */
+  background-color: var(--primaryColor);
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  font-family: var(--fuentePrincipal);
+}
+
+p {
+  font-size: 1.8rem;
+  color: var(--negro);
+  font-family: var(--fuenteTexto);
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+}
+
+.contenedor {
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
+h1,
+h2 {
+  text-align: center;
+  color: var(--primaryColorDark);
+  margin: 0.5rem;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  margin: 0;
+  color: var(--primaryColorDark);
+  font-size: 1.9rem;
+  text-align: center;
+}
+
+.no-visible {
+  display: none;
+}
+
+.context {
+  position: absolute;
+}
+
+.margin-centrar-1 {
+  margin: 0 auto 1rem auto;
+}
+
+.container {
+  width: 85%;
+  padding: 1.5rem;
+  background-color: var(--blanco);
+  margin: 0 auto;
+  border-radius: 1rem;
+  box-shadow: 0.5rem 2rem 5rem #000;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+.quiz {
+  padding: 0.5rem;
+  margin: 1rem;
+  border-radius: 1rem;
+  border: solid;
+}
+
+.question {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.answer {
+  display: flex;
+  flex-direction: column;
+  margin-right: 1rem;
+  padding: 0.5rem;
+}
+
+.correcta {
+  color: #1e7c1e;
+}
+
+.incorrecta {
+  color: #971414;
+}
+
+.paginacion {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.botonera {
+  display: flex;
+  justify-content: space-between;
+}
+
+.enviar {
+  background-color: #ddd;
+}
+
+button {
+  background-color: var(--secondaryColor);
+  border-radius: 0.5rem;
+  color: var(--negro);
+  font-size: 1.6rem;
+  font-family: var(--fuenteSecundaria);
+  cursor: pointer;
+  padding: 0.3rem 0.7rem;
+  border: none;
+}
+
+.btn-empezar {
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+button:hover {
+  background-color: var(--primaryColor);
+}
+
+.foto-quiz {
+  width: 11rem;
+  height: 11rem;
+  margin-top: 2rem;
+}
+
+/* Bienvenida */
+
+.bienvenida {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.txt-bienvenida {
+  
+  margin: 0 auto;
+  max-width: 60rem;
+  padding: 2rem;
+  line-height: 1.5;
+}
+.txt-bienvenida-child {
+  text-align: center;
+}
+
+.btn-centrar {
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.rainbow {
+  width: 80%;
+  color: #000;
+  font-weight: bold;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  padding: 0.8rem 1.6rem;
+  background-image: linear-gradient(
+    90deg,
+    #00c0ff 0%,
+    #ffcf00 49%,
+    #fc4f4f 80%,
+    #00c0ff 100%
+  );
+  margin: 0 auto;
+}
+
+/* MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  border: 0.1rem solid #888;
+  width: 80%;
+}
+
+#cerrarModal {
+  margin-top: 1rem;
+  padding: 0.8rem 1.2rem;
+  display: flex;
+  justify-content: end;
+  font-size: 1.6rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+/* Juego 3x3 */
+
+.tabla {
+  border: 0.2rem solid black;
+  border-radius: 0.5rem;
+  border-collapse: collapse;
+  margin: 1rem;
+}
+
+.tabla-row {
+  border: 0.1rem solid black;
+  width: 5rem;
+  height: 5rem;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.square {
+  border: 0.1rem solid black;
+  width: 15rem;
+  padding: 1rem;
+}
+
+.juego {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Juego PAREJAS */
+
+.square-pareja {
+  border: 0.2rem solid Black;
+  width: 5rem;
+  height: 5rem;
+  text-align: center;
+  font-size: 4rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  background-color: #ddd;
+}
+
+.square-pareja:hover {
+  background-color: #f5f5f5;
+}
+
+/* Puzzle */
+
+.puzzle {
+  margin: 1rem;
+  width: 30rem;
+  height: 30rem;
+}
+
+.fotofin {
+  border: solid;
+  border-radius: 1rem;
+}
+
+.mapa {
+  width: 100%;
+  height: 20rem;
+}
+
+/* FINAL  */
+
+.container--nocol {
+  width: 85%;
+  padding: 1.5rem;
+  background-color: var(--blanco);
+  margin: 0 auto;
+  border-radius: 1rem;
+  box-shadow: 0.5rem 2rem 5rem #000;
+  justify-content: center;
+  display: flex;
+}
+
+.next {
+  display: flex;
+  align-items: center;
+  width: 2rem;
+}
+
+.elemento {
+  display: flex;
+  flex-direction: column;
+}
+
+.fecha {
+  margin-bottom: 1rem;
+}
+
+.mapa {
+  border: solid;
+  border-radius: 1rem;
+  border-color: #000;
+  margin: 1rem auto;
+  width: 100%;
+  align-items: center;
+}
+
+
+/*Diseño pagina niveles*/
+/* Estilo para el input */
+.styled-input {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.styled-input:focus {
+  border-color: #6e45e1;
+}
+
+/* Estilo para el botón */
+.styled-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #6e45e1;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.styled-button:hover {
+  background-color: #512da8;
+}
+
+/* Estilo para el mensaje de error */
+.error-label {
+  color: red;
+  font-size: 14px;
+}
+
+
+/* CSS Animation Background */
+.area {
+  width: 100%;
+  height: 100vh;
+}
+
+.circles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 98%;
+  overflow: hidden;
+}
+
+.circles li {
+  position: absolute;
+  display: block;
+  list-style: none;
+  width: 5rem;
+  height: 5rem;
+  background: rgba(255, 255, 255, 0.2);
+  animation: animate 25s linear infinite;
+  bottom: -15rem;
+}
+
+.circles li:nth-child(1) {
+  left: 25%;
+  width: 8rem;
+  height: 8rem;
+  animation-duration: 12s;
+  animation-delay: 0s;
+  background-image: url("../img/img1.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.circles li:nth-child(2) {
+  left: 10%;
+  width: 7rem;
+  height: 7rem;
+  animation-delay: 2s;
+  animation-duration: 12s;
+  background-image: url("../img/img2.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.circles li:nth-child(3) {
+  left: 56%;
+  width: 24rem;
+  height: 24rem;
+  animation-delay: 0s;
+  background-image: url("../img/img3.JPG");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.circles li:nth-child(4) {
+  left: 40%;
+  width: 6rem;
+  height: 6rem;
+  animation-delay: 0s;
+  animation-duration: 18s;
+  background-image: url("../img/img4.JPG");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.circles li:nth-child(5) {
+  left: 25%;
+  width: 11rem;
+  height: 11rem;
+  animation-delay: 0s;
+  background-image: url("../img/img5.JPG");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.circles li:nth-child(6) {
+  left: 18%;
+  width: 11rem;
+  height: 11rem;
+  animation-delay: 3s;
+  background-image: url("../img/img6.JPG");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.circles li:nth-child(7) {
+  left: 35%;
+  width: 15rem;
+  height: 15rem;
+  animation-delay: 7s;
+  background-image: url("../img/img7.JPG");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.circles li:nth-child(8) {
+  left: 50%;
+  width: 5.5rem;
+  height: 5.5rem;
+  animation-delay: 15s;
+  animation-duration: 45s;
+  background-image: url("../img/img8.JPG");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.circles li:nth-child(9) {
+  left: 20%;
+  width: 9rem;
+  height: 9rem;
+  animation-delay: 2s;
+  animation-duration: 35s;
+  background-image: url("../img/img9.JPG");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.circles li:nth-child(10) {
+  left: 85%;
+  width: 13rem;
+  height: 13rem;
+  animation-delay: 0s;
+  animation-duration: 11s;
+  background-image: url("../img/img10.JPG");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.circles li:nth-child(11) {
+  left: 10%;
+  width: 15rem;
+  height: 15rem;
+  animation-delay: 0s;
+  animation-duration: 11s;
+  background-image: url("../img/img11.JPG");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.circles li:nth-child(12) {
+  left: 45%;
+  width: 12rem;
+  height: 12rem;
+  animation-delay: 0s;
+  animation-duration: 16s;
+  background-image: url("../img/img1.JPG");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.circles li:nth-child(13) {
+  left: 70%;
+  width: 15rem;
+  height: 15rem;
+  animation-delay: 0s;
+  animation-duration: 30s;
+  background-image: url("../img/img4.JPG");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.circles li:nth-child(14) {
+  left: 33%;
+  width: 15rem;
+  height: 15rem;
+  animation-delay: 0s;
+  animation-duration: 15s;
+  background-image: url("../img/img6.JPG");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.circles li:nth-child(15) {
+  left: 10%;
+  width: 4rem;
+  height: 4rem;
+  animation-delay: 0s;
+  animation-duration: 20s;
+  background-image: url("../img/img9.JPG");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+@keyframes animate {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+    border-radius: 0;
+  }
+
+  100% {
+    transform: translateY(-100rem) rotate(720deg);
+    opacity: 0;
+    border-radius: 50%;
+  }
+}

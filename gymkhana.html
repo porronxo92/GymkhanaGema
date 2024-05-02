@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gymkhana Gema</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Josefin+Sans:wght@200;400;700&family=Permanent+Marker&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="area">
+      <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    <div class="context">
+      <h1>🎂 FELIZ CUMPLEAÑOS 🎂<br />❤ MI AMOR ❤</h1>
+      <div class="container">
+        <div id="nivel" class="bienvenida">
+          <h2 id="title-nivel"></h2>
+          <h3>ACERTIJO</h3>
+          <p id="acertijo" class="txt-bienvenida"></p>
+          <input type="hidden" id="respuestaCorrecta"> <!-- Este input oculto almacenará la respuesta correcta -->
+          <input type="text" id="answerInput" class="styled-input" placeholder="Codigo Gymkhana" />
+          <button id="boton-answer" class="styled-button" onclick="checkAnswer()">Siguiente Nivel</button>
+          <label id="errorLabel" class="error-label"></label>
+        </div>
+      </div>
+    </div>
+    <script src="js/script.js"></script>
+  </body>
+</html>
